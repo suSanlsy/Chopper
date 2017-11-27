@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.dao.SfryInfoDao">
+	<resultMap id="SfryInfoResultMap" type="com.insigma.model.SfryInfo">
+		<id property="xh" column="xh"/>
+		<result property="xm" column="xm"/>
+		<result property="xb" column="xb"/>
+		<result property="nl" column="nl"/>
+		<result property="hkszd" column="hkszd"/>
+		<result property="wtlb" column="wtlb"/>
+		<result property="sfdd" column="sfdd"/>
+		<result property="djr" column="djr"/>
+		<result property="djsj" column="djsj"/>
+		<result property="bz" column="bz"/>
+	</resultMap>
+	
+	<select id="getByXh" resultMap="SfryInfoResultMap" parameterType="int">
+		select * from sfry where xh=#{xh}		
+	</select>
+	
+	<select id="getAllSfry" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry
+		order by xh desc 
+		limit 10 offset #{offset}		
+	</select>
+	
+	<select id="getAllSfryByName" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where xm like #{xm}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByHkszd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where hkszd like #{hkszd}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByWtlb" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBySfdd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where sfdd like #{sfdd}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByNameAndHkszd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where xm like #{xm} and hkszd like #{hkszd}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByNameAndWtlb" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where xm like #{xm} and wtlb like #{wtlb}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByNameAndSfdd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where xm like #{xm} and sfdd like #{sfdd}
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByHkszdAndWtlb" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where hkszd like #{hkszd} and wtlb like #{wtlb}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByHkszdAndSfdd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where hkszd like #{hkszd} and sfdd like #{sfdd}
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryByWtlbAndSfdd" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb} and sfdd like #{sfdd}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBy3xhw" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb} and hkszd like #{hkszd} and xm like #{xm}
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBy3xsw" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb} and sfdd like #{sfdd} and xm like #{xm}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBy3xsh" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where sfdd like #{sfdd} and hkszd like #{hkszd} and xm like #{xm}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBy3wsh" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb} and hkszd like #{hkszd} and sfdd like #{sfdd}
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllSfryBy4" resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where wtlb like #{wtlb} and hkszd like #{hkszd} and xm like #{xm}
+		and sfdd like #{sfdd} 
+		order by xh desc 
+		<if test="flag==1">
+		limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getAllByDjsj"  resultMap="SfryInfoResultMap">
+		select xh,xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,date_format(djsj,'%Y-%m-%d') djsj from sfry 
+		where unix_timestamp(djsj) between unix_timestamp(#{djks}) and unix_timestamp(#{djjs})
+		<if test="wtlb!='%%' and wtlb!=null">
+			and wtlb like #{wtlb} 
+		</if>
+		<if test="hkszd!='%%' and hkszd!=null">
+			and hkszd like #{hkszd} 
+		</if>
+		<if test="xm!='%%' and xm!=null">
+			and xm like #{xm} 
+		</if>
+		<if test="sfdd!='%%' and sfdd!=null">
+			and sfdd like #{sfdd}
+		</if> 	
+		order by xh desc 
+		<if test="flag==1">
+			limit 10 offset #{offset}
+		</if> 	
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from sfry 
+	</select>
+	
+	<insert id="addSfry" useGeneratedKeys="true" parameterType="com.insigma.model.SfryInfo">
+		insert into sfry(xm,xb,nl,hkszd,wtlb,sfdd,bz,djr,djsj)
+		values (#{sfry.xm},#{sfry.xb},#{sfry.nl},#{sfry.hkszd},#{sfry.wtlb},#{sfry.sfdd},#{sfry.bz},#{sfry.djr},#{sfry.djsj})
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		delete from sfry 
+		where xh=#{xh}
+	</delete>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//www.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.dao.AdminInfoDao">
+	<resultMap id="AdminInfoResultMap" type="com.insigma.model.AdminInfo">
+		<id property="id" column="id"/>
+		<result property="username" column="username"/>
+		<result property="pass" column="pass" />
+		<result property="realname" column="realname" />
+		<result property="fzr" column="fzr" />
+	</resultMap>
+	
+	<insert id="addAdmin" useGeneratedKeys="true" parameterType="com.insigma.model.AdminInfo">
+		insert into admin(username,pass,realname,fzr)
+		values (#{admin.username},#{admin.pass},#{admin.realname},#{admin.fzr})
+	</insert>
+	
+	<select id="getPassByUsername" resultType="string">
+		select pass from admin where username=#{username}		
+	</select>
+	
+</mapper>
